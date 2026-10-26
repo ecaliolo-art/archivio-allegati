@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Archivio allegati – Staff only</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<style>
+:root{--ink:#11203F;--mu:#55627C;--bl:#1C4FB3;--ln:#DDE4F0;--soft:#E6EDFB;--or:#D9640F;--ortint:#FFF0E4;--orink:#A8480F;--bg:#F5F8FD;--card:#fff;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:28px 56px;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+h1,h2,.bd{font-family:Manrope,sans-serif}
+.hide,[hidden]{display:none!important}
+/* gate */
+#gate{max-width:440px;margin:7vh auto 0;background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:34px 30px 28px;box-shadow:0 18px 50px -24px rgba(17,32,63,.35);text-align:center}
+.lock{width:68px;height:68px;border-radius:50%;background:var(--ortint);color:var(--or);display:grid;place-items:center;margin:0 auto 16px}
+.tag{display:inline-block;font:800 12px Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--orink);background:var(--ortint);padding:4px 12px;border-radius:99px}
+#gate h1{margin:12px 0 6px;font-size:1.65rem;line-height:1.2;text-wrap:balance}
+#gate p{margin:0 0 20px;color:var(--mu)}
+#pw{width:100%;padding:13px 14px;border:1.5px solid var(--ln);border-radius:12px;font:600 1.05rem Inter,sans-serif;letter-spacing:.08em;text-align:center;color:var(--ink);background:#fff}
+#pw:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 4px var(--soft)}
+#go{margin-top:12px;width:100%;padding:13px;border:0;border-radius:12px;background:var(--bl);color:#fff;font:700 1rem Manrope,sans-serif;cursor:pointer}
+#go:hover{background:#163f91}#go:disabled{opacity:.6;cursor:wait}
+#err{min-height:22px;margin:10px 0 0;color:#B42318;font-size:.92rem}
+.foot{margin-top:18px;font-size:.8rem;color:var(--mu)}
+/* archivio */
+main{max-width:980px;margin:0 auto}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.bar button{font:600 .88rem Inter,sans-serif;border:1px solid var(--ln);background:#fff;color:var(--mu);border-radius:10px;padding:6px 14px;cursor:pointer}
+#app h1{margin:0;font-size:1.9rem;line-height:1.15;text-wrap:balance}
+.sub{margin:8px 0 18px;color:var(--mu);max-width:75ch}
+#q{width:100%;padding:12px 14px;border:1.5px solid var(--ln);border-radius:12px;font:inherit;background:#fff;color:var(--ink)}
+#q:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 4px var(--soft)}
+.f{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 20px}
+.f button{font:600 .9rem Inter,sans-serif;border:1px solid var(--ln);background:#fff;color:var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer}
+.f button.on{background:var(--bl);border-color:var(--bl);color:#fff}
+.sc{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:16px 18px;margin:0 0 12px}
+.sc h2{margin:0 0 6px;font-size:1.08rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.sc h2 small{font:400 .85rem Inter,sans-serif;color:var(--mu)}
+ul{list-style:none;margin:0;padding:0}
+li{padding:10px 0;border-top:1px solid var(--ln)}li:first-child{border-top:0}
+.r{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;justify-content:space-between}
+.r a{color:var(--bl);font-weight:600;min-width:0;overflow-wrap:anywhere;flex:1 1 320px;text-decoration:none}
+.r a:hover{text-decoration:underline}
+.m{display:flex;gap:10px;align-items:baseline;white-space:nowrap}
+.t{font-size:.72rem;border-radius:99px;padding:2px 10px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.t.i{background:var(--soft);color:var(--bl)}.t.v{background:#E3F4EC;color:#146C43}.t.d{background:var(--ortint);color:var(--orink)}
+.z{color:var(--mu);font-size:.85rem;font-variant-numeric:tabular-nums}
+li p{margin:2px 0 0;color:var(--mu);font-size:.93rem;max-width:75ch}
+a:focus-visible,button:focus-visible{outline:2px solid var(--bl);outline-offset:2px}
+#dl{position:fixed;inset:auto 0 0 0;z-index:9;padding:12px;display:flex;justify-content:center;background:linear-gradient(transparent,rgba(17,32,63,.25))}
+.dlb{width:100%;max-width:560px;background:#fff;border:1px solid var(--ln);border-radius:18px;padding:18px 20px;box-shadow:0 -10px 40px -10px rgba(17,32,63,.4)}
+.dlt{margin:0;font:700 1rem Manrope,sans-serif;overflow-wrap:anywhere}.dls{margin:2px 0 12px;color:var(--mu);font-size:.9rem}
+.dla{display:flex;flex-wrap:wrap;gap:8px}.dla a,.dla button{font:700 .95rem Manrope,sans-serif;border-radius:10px;padding:10px 18px;border:1px solid var(--ln);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer}
+.dla a.p{background:var(--bl);border-color:var(--bl);color:#fff}
+</style></head><body>
+<section id="gate">
+  <div class="lock"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+  <span class="tag">Staff only</span>
+  <h1>Archivio allegati</h1>
+  <p>Documenti riservati alle RSU e allo staff UIL Scuola. Inserisci la password per entrare.</p>
+  <form id="f" autocomplete="off">
+    <input id="pw" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password" autofocus>
+    <button id="go" type="submit">Entra nell'archivio</button>
+    <div id="err" role="alert"></div>
+  </form>
+  <div class="foot">A cura dell'Avvocato Emiliano Caliolo · UIL Scuola</div>
+</section>
+<div id="app" class="hide"><main>
+  <div class="bar"><span class="tag">Staff only</span><button id="out" type="button">Esci</button></div>
+  <div id="body"></div>
+</main></div>
+<script>
+(function(){
+var SALT=Uint8Array.from(atob('Q113+NQbPGb9x1geef+Eyw=='),function(c){return c.charCodeAt(0)}),ITER=600000,KEY=null;
+var enc=new TextEncoder(),$=function(i){return document.getElementById(i)};
+function dec(buf){var u=new Uint8Array(buf);return crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},KEY,u.slice(12))}
+function derive(p){return crypto.subtle.importKey('raw',enc.encode(p),'PBKDF2',false,['deriveKey']).then(function(k){
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:SALT,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt'])})}
+$('f').addEventListener('submit',function(e){
+  e.preventDefault();var p=$('pw').value.trim().toUpperCase();if(!p)return;
+  $('go').disabled=true;$('err').textContent='';
+  if(!window.crypto||!crypto.subtle){$('err').textContent='Apri la pagina da un indirizzo https.';$('go').disabled=false;return}
+  derive(p).then(function(k){KEY=k;return fetch('i.bin',{cache:'no-store'})})
+   .then(function(r){return r.arrayBuffer()}).then(dec)
+   .then(function(b){show(new TextDecoder().decode(b))})
+   .catch(function(){KEY=null;$('err').textContent='Password non corretta.';$('go').disabled=false;$('pw').select()});
+});
+$('out').onclick=function(){KEY=null;$('body').innerHTML='';$('app').classList.add('hide');$('gate').classList.remove('hide');$('pw').value='';$('go').disabled=false};
+
+function ready(fn,u){
+  var o=$('dl');if(o)o.remove();
+  o=document.createElement('div');o.id='dl';
+  o.innerHTML='<div class="dlb"><p class="dlt"></p><p class="dls">File decifrato e pronto.</p><div class="dla"><a class="p" id="dl1" download>Scarica il PDF</a><a class="s" id="dl2" target="_blank" rel="noopener">Apri</a><button type="button" id="dl3">Chiudi</button></div></div>';
+  document.body.appendChild(o);o.querySelector('.dlt').textContent=fn;
+  var d1=$('dl1'),d2=$('dl2');d1.href=u;d1.download=fn;d2.href=u;
+  $('dl3').onclick=function(){o.remove();setTimeout(function(){URL.revokeObjectURL(u)},1000)};
+}
+function show(html){
+  $('body').innerHTML=html;$('gate').classList.add('hide');$('app').classList.remove('hide');
+  var q=$('q'),fl='';
+  function go(){var t=q.value.toLowerCase();document.querySelectorAll('.sc').forEach(function(s){var n=0,h=s.querySelector('h2').textContent;s.querySelectorAll('li').forEach(function(li){var ok=(!t||(h+' '+li.textContent).toLowerCase().indexOf(t)>-1)&&(!fl||li.dataset.k===fl);li.classList.toggle('hide',!ok);if(ok)n++});s.classList.toggle('hide',!n)})}
+  q.addEventListener('input',go);
+  document.querySelectorAll('.f button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.f button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');fl=b.dataset.f;go()}});
+  document.querySelectorAll('a[data-f]').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault();var nm=a.textContent.trim(),fn=/\.pdf$/i.test(nm)?nm:nm+'.pdf';a.style.opacity='.5';
+    fetch(a.dataset.f).then(function(r){return r.arrayBuffer()}).then(dec).then(function(b){
+      a.style.opacity='';ready(fn,URL.createObjectURL(new Blob([b],{type:'application/pdf'})));
+    }).catch(function(){a.style.opacity='';alert('Impossibile aprire il file.')});
+  })});
+}
+})();
+</script></body></html>
